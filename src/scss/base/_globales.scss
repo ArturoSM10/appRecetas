@@ -15,7 +15,6 @@ body {
     font-family: v.$fuentePrincipal;
     font-size: 1.6rem;
     line-height: 1.2;
-    background-image: linear-gradient(to right,v.$primario, v.$secundario);
 }
 
 [class*="__titulo"] {
@@ -31,4 +30,16 @@ h1 {
     width: 90%;
     max-width: 120rem;
     margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
 }

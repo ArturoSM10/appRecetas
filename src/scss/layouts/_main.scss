@@ -1,3 +1,185 @@
 @use '../base/variables' as v;
 @use '../components/mixins' as m;
 @use 'sass:color';
+
+.header {
+    background-color: v.$primario;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+        color: v.$blanco;
+        font-size: 2.4rem;
+        font-weight: 400;
+        text-transform: capitalize;
+        margin: 0;
+
+        span {
+            text-transform: lowercase;
+        }
+    }
+    .menu {
+        &__btn {
+            @include m.desktop { 
+                display: none;
+            }
+        }
+
+        ul {
+            display: none;
+            @include m.desktop { 
+                display: flex;
+                gap: 2rem;
+            }
+        }
+
+        &__element {
+            font-size: 2.4rem;
+            color: rgba($color: #FFF, $alpha: 0.5);
+            text-transform: capitalize;
+            &--selected {
+                color: v.$blanco;
+            }
+        }
+ 
+    }
+    .menu__btn {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        width: 4rem;
+        height: 4rem;
+        svg {
+            display: block;
+            background-color: v.$primario;
+            padding: 0.8rem;
+            border: 1px solid v.$borderSecundario;
+            border-radius: 0.5rem;
+            width: 100%;
+            height: 100%;
+            &:hover {
+                border: 5px solid v.$borderSecundario;
+            }
+        }
+    }
+}
+
+.main {
+    max-width: 140rem;
+    margin: 0 auto;
+    overflow: hidden;
+    &__title {
+        text-align: center;
+        font-size: 4rem;
+        text-transform: capitalize;
+        margin: 5rem 0;
+        font-weight: 500;
+    }
+}
+
+.form {
+    background-color: v.$secundario;
+    margin: 0 auto 5rem;
+    width: 90%;
+    padding: 3rem 5rem;
+    border: 1px solid v.$border;
+    border-radius: 1rem;
+
+    .campo {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .categoria {
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid v.$border;
+        position: relative;
+        &::picker-icon {
+            margin-right: 1rem;
+            content: "^";
+            transform: rotate(180deg);
+            
+        }
+    }
+
+    select, ::picker(select) {
+        appearance: base-select;
+    }
+
+    ::picker(select) {
+        background-color: rgba($color: v.$negro, $alpha: 0.5);
+        border: none;
+        border-radius: 1rem;
+        color: #FFF;
+    }
+
+    select option {
+        padding: 0.5rem;
+        border: none;
+        &:hover {
+            background-color: rgba($color: v.$primario, $alpha: 0.6);
+            border-radius: 1rem;
+        }
+    }
+    
+    @include m.tablet { 
+        width: 80%;
+    }
+
+}
+
+.resultados {
+    &__title {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 500;
+    }
+}
+
+.card-container {
+    margin: 0 auto;
+    width: 95%;
+     @include m.tablet { 
+            @include m.grid(3, 2.5rem);
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid v.$border;
+        margin-bottom: 2rem;
+        @include m.tablet { 
+            margin-bottom: 0;
+        }
+    }
+    .card__img {
+        width: 100%;
+        height: 100%;
+        flex: 1;
+    }
+
+    .card__info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        .card__title {
+            margin: 0 0 1.6rem;
+            font-weight: 500;
+            font-size: 2.6rem;
+        }
+    }
+
+    .card__btn {
+        @include m.boton(v.$primario, v.$blanco, capitalize);
+        font-weight: normal;
+        padding: 1rem ;
+    }
+}

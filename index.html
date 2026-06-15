@@ -7,7 +7,114 @@
     <link rel="stylesheet" href="./dist/css/style.css">
 </head>
 <body>
+    <header class="header">
+        <a href="./index.html"><h1 class="header__title">Buscador <span>de</span> recetas</h1></a>
+
+        <nav class="menu">
+            <button class="menu__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(208, 209, 210)" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+            </button>
+            <ul>
+                <li><a class="menu__element menu__element--selected" href="./index.html">Inicio</a></li>
+                <li><a class="menu__element" href="./favoritos.html">Mis favoritos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <h2 class="main__title">Inicio</h2>
+
+        <form class="form">
+            <div class="campo">
+                <label for="categoria">Categoría</label>
+
+                <select class="categoria" name="categoria" id="categoria">
+                    <option value="" selected disabled>-- Seleccione --</option>
+                    <option value="">-- Seleccione --</option>
+                    <option value="">-- Seleccione --</option>
+                    <option value="">-- Seleccione --</option>
+                    <option value="">-- Seleccione --</option>
+                </select>
+            </div>
+        </form>
+        <div class="resultados">
+            <h2 class="resultados__title">Resultados</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card__img-container">
+                        <img class="card__img" src="https://www.themealdb.com/images/media/meals/8rfd4q1764112993.jpg" alt="">
+                    </div>
+                    <div class="card__info">
+                        <h3 class="card__title">Algerian Kefta (Meatballs)</h3>
+                        <a class="card__btn" href="#">Ver Receta</a>
+                    </div>
+                </div>  
+                <div class="card">
+                    <div class="card__img-container">
+                        <img class="card__img" src="https://www.themealdb.com/images/media/meals/13fg4j1764441982.jpg" alt="">
+                    </div>
+                    <div class="card__info">
+                        <h3 class="card__title">Arepa Pabellón</h3>
+                        <a class="card__btn" href="#">Ver Receta</a>
+                    </div>
+                </div>  
+                <div class="card">
+                    <div class="card__img-container">
+                        <img class="card__img" src="https://www.themealdb.com/images/media/meals/jgl9qq1764437635.jpg" alt="">
+                    </div>
+                    <div class="card__info">
+                        <h3 class="card__title">Arepa pelua</h3>
+                        <a class="card__btn" href="#">Ver Receta</a>
+                    </div>
+                </div>  
+            </div>
+
+        </div>
+    </main>
+
+    <div class="modal">
+        <div class="modal-card">
+            <section class="modal-card__header">
+                <h4 class="modal-card__title">Algerian Kefta (Meatballs)</h4>
+                <a class="modal-card__btn" href="#">X</a>
+            </section>
+            <hr>
+            <section class="modal-card__body">
+                <div class="modal-card__img">
+                    <img src="https://www.themealdb.com/images/media/meals/8rfd4q1764112993.jpg" alt="">
+                </div>
+                <div class="modal-card__info">
+                    <h4 class="modal-card__title">Instrucciones</h3>
+                    <p class="modal-card__p">Combine ground beef with 1/2 of the minced garlic and 1 tablespoon chopped onion in a large bowl. Mix with your hands until fully incorporated. Shape meat mixture into 1 1/2-inch oblong patties; you should have 12 to 14 meatballs. Heat a large skillet over medium-high heat. Brown patties in batches in the hot skillet until crispy on both sides and no longer pink in the center, about 10 minutes. Set meatballs aside in a rimmed serving dish. Reduce heat to medium and stir remaining chopped onion into drippings in the skillet. Season with salt and pepper. Cook, stirring constantly, until onion has softened and turned translucent, about 5 minutes. Stir in remaining garlic and cook for 30 seconds. Stir in Roma tomatoes, dried parsley, and ras el hanout. Pour in water. Cook until tomatoes are soft, about 5 minutes. Pour tomato sauce over meatballs to serve.</p>
+                    <h4 class="modal-card__title">Ingredientes <span>y</span> cantidades</h3>
+                    <ul>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                        <li class="modal-card__ingrediente">Ground Beef - 1 lb</li>
+                    </ul>
+                </div>
+            </section>
+            <hr>
+            <section class="modal-card__footer">
+                <a class="modal-card__favorito" href="#">Guardar favorito</a>
+                <a class="modal-card__cerrar" href="#">Cerrar</a>
+            </section>
+        </div>
+    </div>
+
+    <div class="notificacion">
+        <section class="notificacion__header">
+            <h5 class="notificacion__title">App recetas</h5>
+            <a class="notificacion__cerrar" href="#">X</a>
+        </section>
+        <p class="notificacion__contenido">Eliminado correctamente</p>
+    </div>
     
-    <link rel="stylesheet" href="./dist/js/app.js" type="module">
+    <link href="./dist/js/app.js" type="module">
 </body>
 </html>
