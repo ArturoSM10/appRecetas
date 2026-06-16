@@ -1,0 +1,57 @@
+@use '../base/variables' as v;
+@use '../components/mixins' as m;
+@use 'sass:color';
+
+body {
+    position: relative;
+}
+
+.notificacion {
+    display: none;
+    top: 3rem;
+    right: 0;
+    width: 80%;
+    @include m.tablet { 
+        width: 40rem;
+        right: 3rem;
+        left: auto;
+    }
+    position: fixed;
+
+    z-index: 2;
+    .notificacion__header {
+        background-color: v.$primario;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem;
+        border-radius: 1rem 1rem 0 0;
+    }
+    .notificacion__title,
+    .notificacion__cerrar {
+        color: v.$blanco;
+        font-size: 1.6rem;
+    }
+
+    .notificacion__title {
+        margin: 0;
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+    .notificacion__cerrar {
+        font-weight: 300;
+        &:hover {
+            font-weight: 500;
+        }
+    }
+
+    .notificacion__contenido {
+        background-color: rgba($color: v.$secundario, $alpha: 0.6);
+        padding: 1.5rem;
+        margin: 0;
+        border-radius: 0 0 1rem 1rem;
+        border: 1px solid v.$border;
+        border-top: none;
+        font-weight: 300;
+    }
+}

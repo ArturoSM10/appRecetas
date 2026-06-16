@@ -2,70 +2,6 @@
 @use '../components/mixins' as m;
 @use 'sass:color';
 
-.header {
-    background-color: v.$primario;
-    padding: 1rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &__title {
-        color: v.$blanco;
-        font-size: 2.4rem;
-        font-weight: 400;
-        text-transform: capitalize;
-        margin: 0;
-
-        span {
-            text-transform: lowercase;
-        }
-    }
-    .menu {
-        &__btn {
-            @include m.desktop { 
-                display: none;
-            }
-        }
-
-        ul {
-            display: none;
-            @include m.desktop { 
-                display: flex;
-                gap: 2rem;
-            }
-        }
-
-        &__element {
-            font-size: 2.4rem;
-            color: rgba($color: #FFF, $alpha: 0.5);
-            text-transform: capitalize;
-            &--selected {
-                color: v.$blanco;
-            }
-        }
- 
-    }
-    .menu__btn {
-        padding: 0;
-        border: none;
-        background-color: transparent;
-        width: 4rem;
-        height: 4rem;
-        svg {
-            display: block;
-            background-color: v.$primario;
-            padding: 0.8rem;
-            border: 1px solid v.$borderSecundario;
-            border-radius: 0.5rem;
-            width: 100%;
-            height: 100%;
-            &:hover {
-                border: 5px solid v.$borderSecundario;
-            }
-        }
-    }
-}
-
 .main {
     max-width: 140rem;
     margin: 0 auto;
@@ -133,6 +69,7 @@
 }
 
 .resultados {
+    margin-top: 5rem;
     &__title {
         text-align: center;
         font-size: 3rem;
