@@ -351,10 +351,18 @@ li {
 
 .header {
   background-color: #df4956;
-  padding: 1rem 3rem;
-  display: flex;
-  justify-content: space-between;
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
   align-items: center;
+}
+@media (min-width: 1024px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 .header__title {
   color: #FFF;
@@ -366,16 +374,28 @@ li {
 .header__title span {
   text-transform: lowercase;
 }
+.header .menu {
+  grid-column: 1/3;
+  justify-self: end;
+}
+.header .menu__btn {
+  justify-self: end;
+}
 @media (min-width: 1024px) {
   .header .menu__btn {
     display: none;
   }
 }
-.header .menu ul {
+.header .menu__ul {
   display: none;
 }
+.header .menu__ul.mostrar {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 0 0;
+}
 @media (min-width: 1024px) {
-  .header .menu ul {
+  .header .menu__ul {
     display: flex;
     gap: 2rem;
   }

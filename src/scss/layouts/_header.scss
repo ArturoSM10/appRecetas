@@ -4,10 +4,14 @@
 
 .header {
     background-color: v.$primario;
-    padding: 1rem 3rem;
-    display: flex;
-    justify-content: space-between;
+    padding: 2rem 3rem;
+    @include m.grid(2, 0);
     align-items: center;
+    @include m.desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     &__title {
         color: v.$blanco;
@@ -21,14 +25,24 @@
         }
     }
     .menu {
+        grid-column: 1/3;
+        justify-self: end;
         &__btn {
+            justify-self: end;
             @include m.desktop { 
                 display: none;
             }
         }
 
-        ul {
+        &__ul {
             display: none;
+
+            &.mostrar {
+                display: flex;
+                gap: 1rem;
+                padding: 2rem 0 0;   
+            }
+
             @include m.desktop { 
                 display: flex;
                 gap: 2rem;
