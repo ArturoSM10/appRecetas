@@ -3,7 +3,7 @@ import { barMenu, menuUl, formulario, select } from "./selectores.js";
 export function cargarPagina() {
     cargarLocalStorage();
     leerEventos();
-    cargarDatosApi();
+    cargarCategoriasApi();
 }
 
 function leerEventos() {
@@ -24,8 +24,11 @@ function leerFormulario(e) {
     console.log(e.target.value);
 }
 
-function cargarDatosApi() {
-
+function cargarCategoriasApi() {
+    const link = `https://www.themealdb.com/api/json/v1/1/categories.php`;
+    fetch(link).
+        then(respuesta => respuesta.json()).
+        then(datos => console.log(datos.categories));
 }
 
 function cargarLocalStorage() {
