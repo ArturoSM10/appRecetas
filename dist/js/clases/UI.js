@@ -12,6 +12,7 @@ export class UI {
     }
 
     crearCards(recetas) {
+        
         recetas.forEach(receta => {
             const { idMeal, strMeal, strMealThumb} = receta;
             const divCard = document.createElement(`DIV`);
@@ -32,6 +33,7 @@ export class UI {
             mealTitle.textContent = strMeal;
             const btnCard = document.createElement(`BUTTON`);
             btnCard.classList.add(`card__btn`);
+            btnCard.dataset.id = idMeal;
             btnCard.textContent = `Ver receta`;
             divCardInfo.appendChild(mealTitle);
             divCardInfo.appendChild(btnCard);
@@ -41,6 +43,10 @@ export class UI {
 
             cardContainer.appendChild(divCard);
         }); 
+    }
+
+    mostrarModal(objeto) {
+
     }
     
 }

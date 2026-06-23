@@ -3,3 +3,4 @@ export const menuUl = document.querySelector(`.menu__ul`);
 export const formulario = document.querySelector(`.form`);
 export const select = document.querySelector(`#categoria`);
 export const cardContainer = document.querySelector(`.card-container`);
+export const body = document.querySelector(`.body`);
