@@ -414,8 +414,6 @@ li {
   background-color: transparent;
   width: 4rem;
   height: 4rem;
-  position: relative;
-  z-index: 10;
 }
 .header .menu__btn svg {
   display: block;
@@ -425,12 +423,6 @@ li {
   border-radius: 0.5rem;
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: -10;
 }
 .header .menu__btn svg:hover {
   border: 5px solid #e3e3e3;
@@ -592,6 +584,9 @@ body {
   padding: 3rem 0;
   max-height: 100vh;
 }
+.modal.activo {
+  display: block;
+}
 .modal hr {
   background-color: #d1d2d3;
   height: 1px;
@@ -634,9 +629,16 @@ body {
   color: #6c757d;
   font-weight: 200;
   transition: font-weight 0.3s;
+  border: none;
+  background-color: transparent;
+  transition: 0.1s all;
 }
 .modal-card__btn:hover {
   font-weight: 400;
+  color: #df4956;
+}
+.modal-card__btn:active {
+  color: #6c757d;
 }
 .modal-card__body {
   flex-grow: 1;

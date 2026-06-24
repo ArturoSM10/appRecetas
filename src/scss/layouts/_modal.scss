@@ -22,6 +22,10 @@ body {
     z-index: 1;
     padding: 3rem 0;
     max-height: 100vh;
+
+    &.activo {
+        display: block;
+    }
     
     hr {
         background-color: v.$border;
@@ -69,8 +73,15 @@ body {
         color: v.$secundarioFuerte;
         font-weight: 200;
         transition: font-weight 0.3s;
+        border: none;
+        background-color: transparent;
+        transition: 0.1s all;
         &:hover {
             font-weight: 400;
+            color: v.$primario;
+        }
+        &:active {
+            color: v.$secundarioFuerte;
         }
     }
 

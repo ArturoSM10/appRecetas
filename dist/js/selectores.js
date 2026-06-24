@@ -4,3 +4,4 @@ export const formulario = document.querySelector(`.form`);
 export const select = document.querySelector(`#categoria`);
 export const cardContainer = document.querySelector(`.card-container`);
 export const body = document.querySelector(`.body`);
+export const modal = document.querySelector(`.modal`);

@@ -1,4 +1,4 @@
-import { select, cardContainer } from "../selectores.js";
+import { select, cardContainer, body, modal } from "../selectores.js";
 
 export class UI {
     agregarCategorias(recetas) {
@@ -46,7 +46,110 @@ export class UI {
     }
 
     mostrarModal(objeto) {
+        /*
+        fatla agregar efectos
+        ver si se puede modificar el menu
+        cambiar como se ve el menu principal en version pequeña
 
+        mostrar modal
+        agregar evento cerrar 
+        agregar favoritos y local storage
+        modificar lo que conlleva 
+        eliminar favoritos
+        cargar favoritos
+        mostrar modal dentro de pagina favoritos
+        */
+
+        const { strMeal, strInstructions, strMealThumb, idMeal, ingredients} = objeto;
+
+        const modalDiv = document.createElement(`DIV`);
+        modalDiv.classList.add(`modal-card`);
+
+        const header = document.createElement(`SECTION`);
+        header.classList.add(`modal-card__header`);
+
+        const headerTitle = document.createElement(`H4`);
+        headerTitle.classList.add(`modal-card__title`);
+        headerTitle.textContent = strMeal;
+
+        const headerCerrar = document.createElement(`BUTTON`);
+        headerCerrar.classList.add(`modal-card__btn`);
+        headerCerrar.textContent = `X`;
+
+        header.appendChild(headerTitle);
+        header.appendChild(headerCerrar);
+
+        const headerHr = document.createElement(`HR`);
+        
+        const main = document.createElement(`SECTION`);
+        main.classList.add(`modal-card__body`);
+        
+        const imgContainer = document.createElement(`DIV`);
+        imgContainer.classList.add(`modal-card__img`);
+        const img = document.createElement(`IMG`); 
+        img.src = strMealThumb;
+        img.alt = `Imagen de la receta ${strMeal}`;
+        
+        imgContainer.appendChild(img);
+        
+        const mainInfo = document.createElement(`DIV`);
+        mainInfo.classList.add(`modal-card__info`);
+        
+        const titleInstructions = document.createElement(`H4`);
+        titleInstructions.classList.add(`modal-card__title`);
+        titleInstructions.textContent = `Instrucciones`;
+        
+        const ingredientsP = document.createElement(`P`);
+        ingredientsP.classList.add(`modal-card__p`);
+        ingredientsP.textContent = strInstructions;
+        
+        const titleIngredients = document.createElement(`H4`);
+        titleIngredients.classList.add(`modal-card__title`);
+        titleIngredients.textContent = `Ingredientes y cantidades`;
+        
+        const ul = document.createElement(`UL`);
+
+        ingredients.forEach(ingredient => {
+            const li = document.createElement(`LI`);
+            li.classList.add(`modal-card__ingrediente`);
+            li.textContent = ingredient;
+            ul.appendChild(li);
+        });
+        
+        mainInfo.appendChild(titleInstructions);
+        mainInfo.appendChild(ingredientsP);
+        mainInfo.appendChild(titleIngredients);
+        mainInfo.appendChild(ul);
+        
+        main.appendChild(imgContainer);
+        main.appendChild(mainInfo);
+        
+        const bodyHr = document.createElement(`HR`);
+        
+        const footer = document.createElement(`SECTION`);
+        footer.classList.add(`modal-card__footer`);
+
+        const btnGuardar = document.createElement(`BUTTON`);
+        btnGuardar.classList.add(`modal-card__favorito`);
+        btnGuardar.textContent = `Guardar favorito`;
+
+        const btnCerrar = document.createElement(`BUTTON`);
+        btnCerrar.classList.add(`modal-card__cerrar`);
+        btnCerrar.textContent = `Cerrar`;
+
+        footer.appendChild(btnGuardar);
+        footer.appendChild(btnCerrar);
+
+        modalDiv.appendChild(header);
+        modalDiv.appendChild(headerHr);
+        modalDiv.appendChild(main);
+        modalDiv.appendChild(bodyHr);
+        modalDiv.appendChild(footer);
+
+        modal.appendChild(modalDiv);
+
+        body.classList.add(`overflow-inactivo`);
+        modal.classList.add(`activo`);
     }
     
 }
