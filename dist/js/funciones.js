@@ -1,4 +1,4 @@
-import { barMenu, menuUl, formulario, select, cardContainer, body } from "./selectores.js";
+import { barMenu, menuUl, formulario, select, cardContainer, body, modal } from "./selectores.js";
 import { UI } from "./clases/UI.js";
 import { Recetas } from "./clases/Recetas.js";
 
@@ -22,17 +22,37 @@ function leerApi() {
 }
 
 function manejoDeEventos(e) {
-    console.log(e.target.classList.value)
+    // console.log(e.target.classList)
     if (e.target.parentElement.classList.value === `menu__btn`) {
         menuUl.classList.toggle(`mostrar`);
+        return;
     }
     if (e.target.classList.value === `card__btn`) {
         obtenerRecetaSeleccionada(e.target.dataset.id);
+        return;
+    }
+    if(e.target.classList.value === `modal-card__favorito`) {
+        console.log(`agregar a favoritos`);
+        return;
+    }
+    if(e.target.classList.value === 'modal-card__cerrar' || e.target.classList.value === `modal-card__btn`){
+        ui.cerrarModal();
+        return;
+    }
+    if(e.target.classList.value ===`modal activo`) {
+        const modalCard = document.querySelector(`.modal-card`);
+        console.log(`presionaste fuera`)
+        // modal.style.scale = `1.01`;
+        modalCard.classList.add(`animacion-modal`);
+        setTimeout(() => {
+            modalCard.classList.remove(`animacion-modal`);
+            //  modal.style.scale = `1`;
+        }, 150);
     }
 }
 
 function cargarRecetasCard(e) {
-    limpiarHTML(cardContainer);
+    ui.limpiarHTML(cardContainer);
     
     const id = e.target.value;
     const link = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`;
@@ -46,12 +66,6 @@ function cargarCategoriasApi() {
     fetch(link).
         then(respuesta => respuesta.json()).
         then(datos => ui.agregarCategorias(datos.categories));
-}
-
-function limpiarHTML(elemento) {
-    while(elemento.firstElementChild) {
-        elemento.firstElementChild.remove();
-    }
 }
 
 function obtenerRecetaSeleccionada(id) {

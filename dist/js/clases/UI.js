@@ -60,6 +60,13 @@ export class UI {
         mostrar modal dentro de pagina favoritos
         */
 
+        
+        this.crearModal(objeto);
+        body.classList.toggle(`overflow-inactivo`);
+        modal.classList.toggle(`activo`);
+    }
+
+    crearModal(objeto) {
         const { strMeal, strInstructions, strMealThumb, idMeal, ingredients} = objeto;
 
         const modalDiv = document.createElement(`DIV`);
@@ -147,9 +154,20 @@ export class UI {
         modalDiv.appendChild(footer);
 
         modal.appendChild(modalDiv);
-
-        body.classList.add(`overflow-inactivo`);
-        modal.classList.add(`activo`);
     }
-    
+
+    cerrarModal() {
+        const modalDiv = document.querySelector(`.modal-card`);
+
+        body.classList.toggle(`overflow-inactivo`);
+        modal.classList.toggle(`activo`);
+
+        this.limpiarHTML(modal);
+    }
+
+    limpiarHTML(elemento) {
+        while(elemento.firstElementChild) {
+            elemento.firstElementChild.remove();
+        }
+    }
 }

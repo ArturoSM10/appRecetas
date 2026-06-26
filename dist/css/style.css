@@ -602,10 +602,11 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 1s ease-out;
+  transition: 0.15s transform ease-out;
+  transform: scale(1);
 }
 .modal-card.animacion-modal {
-  transform: scale(1.05);
+  transform: scale(1.01, 1.02);
 }
 .modal-card__header {
   flex-basis: 10%;

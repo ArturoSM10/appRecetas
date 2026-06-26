@@ -22,9 +22,13 @@ body {
     z-index: 1;
     padding: 3rem 0;
     max-height: 100vh;
-
     &.activo {
         display: block;
+        // &:active {
+        //     .modal-card {
+        //         transform: scale(1.01);
+        //     }
+        // }
     }
     
     hr {
@@ -43,9 +47,11 @@ body {
         height: 100%;
         display: flex;
         flex-direction: column;
-        transition: transform 1s ease-out;
+        transition: 0.15s transform ease-out;
+        transform: scale(1);
+        
         &.animacion-modal {
-        transform: scale(1.05);
+            transform: scale(1.01, 1.02);
         }
     }
 
@@ -148,5 +154,6 @@ body {
 
     &-card__cerrar {
         @include m.boton(v.$secundarioFuerte, v.$blanco, capitalize);
+
     }
 }
