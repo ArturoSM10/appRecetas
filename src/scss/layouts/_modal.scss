@@ -8,13 +8,14 @@ body {
 }
 
 .overflow--inactivo {
-    overflow-y: hidden;
+    overflow: hidden;
+    scroll-behavior: smooth;
 }
 
 .modal {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
     position: fixed;
-    background-color: rgba($color: #000000, $alpha: 0.5);
     top: 0;
     left: 0;
     right: 0;
@@ -22,13 +23,11 @@ body {
     z-index: 1;
     padding: 3rem 0;
     max-height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    transition: opacity 1s ease, visible 1s ease;
     &.activo {
-        display: block;
-        // &:active {
-        //     .modal-card {
-        //         transform: scale(1.01);
-        //     }
-        // }
+        opacity: 1;
+        visibility: visible;
     }
     
     hr {
@@ -47,12 +46,13 @@ body {
         height: 100%;
         display: flex;
         flex-direction: column;
-        transition: 0.15s transform ease-out;
-        transform: scale(1);
+
+        // transition: 0.15s transform ease-out;
+        // transform: scale(1);
         
-        &.animacion-modal {
-            transform: scale(1.01, 1.02);
-        }
+        // &.animacion-modal {
+        //     transform: scale(1.01, 1.02);
+        // }
     }
 
     &-card__header {

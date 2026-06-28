@@ -45,28 +45,24 @@ export class UI {
         }); 
     }
 
-    mostrarModal(objeto) {
+    mostrarModal(objeto, existe) {
         /*
         fatla agregar efectos
         ver si se puede modificar el menu
+        quitar desplazamiento de barra de scroll
         cambiar como se ve el menu principal en version pequeña
-
-        mostrar modal
-        agregar evento cerrar 
-        agregar favoritos y local storage
-        modificar lo que conlleva 
-        eliminar favoritos
-        cargar favoritos
-        mostrar modal dentro de pagina favoritos
+        
+        agregar sin favoritos en pagina favoritos
+        ver si puedo actualizar la lista de favoritos al dar clic en cerrar
         */
 
         
-        this.crearModal(objeto);
-        body.classList.toggle(`overflow-inactivo`);
+        this.crearModal(objeto ,existe);
+        body.classList.toggle(`overflow--inactivo`);
         modal.classList.toggle(`activo`);
     }
 
-    crearModal(objeto) {
+    crearModal(objeto, existe) {
         const { strMeal, strInstructions, strMealThumb, idMeal, ingredients} = objeto;
 
         const modalDiv = document.createElement(`DIV`);
@@ -138,7 +134,9 @@ export class UI {
 
         const btnGuardar = document.createElement(`BUTTON`);
         btnGuardar.classList.add(`modal-card__favorito`);
-        btnGuardar.textContent = `Guardar favorito`;
+        btnGuardar.dataset.id = idMeal;
+        // btnGuardar.textContent = `Guardar favorito`
+        (existe ? btnGuardar.textContent = `Eliminar favorito`: btnGuardar.textContent = `Guardar favorito`);
 
         const btnCerrar = document.createElement(`BUTTON`);
         btnCerrar.classList.add(`modal-card__cerrar`);
@@ -159,9 +157,9 @@ export class UI {
     cerrarModal() {
         const modalDiv = document.querySelector(`.modal-card`);
 
-        body.classList.toggle(`overflow-inactivo`);
+        body.classList.toggle(`overflow--inactivo`);
         modal.classList.toggle(`activo`);
-
+        
         this.limpiarHTML(modal);
     }
 
@@ -169,5 +167,10 @@ export class UI {
         while(elemento.firstElementChild) {
             elemento.firstElementChild.remove();
         }
+    }
+
+    cambiarTextoFavoritosBtn(texto) {
+        const favorito = document.querySelector('.modal-card__favorito');
+        favorito.textContent = texto;
     }
 }

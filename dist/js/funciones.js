@@ -6,9 +6,13 @@ const ui = new UI();
 const recetas = new Recetas;
 
 export function cargarPagina() {
-    cargarLocalStorage();
     leerEventos();
     cargarCategoriasApi();
+}
+
+export function cargarFavoritos() {
+    cargarLocalStorage();
+    leerEventosFavoritos();
 }
 
 function leerEventos() {
@@ -17,22 +21,28 @@ function leerEventos() {
 
 }
 
-function leerApi() {
-    
+function leerEventosFavoritos() {
+    body.addEventListener(`click`, manejoDeEventos);
 }
 
 function manejoDeEventos(e) {
-    // console.log(e.target.classList)
     if (e.target.parentElement.classList.value === `menu__btn`) {
         menuUl.classList.toggle(`mostrar`);
         return;
     }
     if (e.target.classList.value === `card__btn`) {
-        obtenerRecetaSeleccionada(e.target.dataset.id);
+        const favoritos = recetas.cargarFavoritos();
+        const existe = recetas.comprobarSiExiste(favoritos, e.target.dataset.id);
+
+        obtenerRecetaSeleccionada(e.target.dataset.id, existe);
         return;
     }
     if(e.target.classList.value === `modal-card__favorito`) {
-        console.log(`agregar a favoritos`);
+        const favoritos = recetas.cargarFavoritos();
+        const existe = recetas.comprobarSiExiste(favoritos, e.target.dataset.id);
+        
+        administrarFavoritos(e.target.dataset.id, existe);
+
         return;
     }
     if(e.target.classList.value === 'modal-card__cerrar' || e.target.classList.value === `modal-card__btn`){
@@ -68,16 +78,37 @@ function cargarCategoriasApi() {
         then(datos => ui.agregarCategorias(datos.categories));
 }
 
-function obtenerRecetaSeleccionada(id) {
+function obtenerRecetaSeleccionada(id, existe) {
     const link = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
     fetch(link).
         then(respuesta => respuesta.json()).
         then( datos => {
-            const datosFormateados = recetas.formatearIngredientes(datos.meals[0]);
-            ui.mostrarModal(datosFormateados);
+            const datosFormateados =recetas.formatearIngredientes(datos.meals[0]);
+            ui.mostrarModal(datosFormateados, existe);
+        });
+    
+}
+
+function almacenarLocalStorage(id) {
+     const link = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+    fetch(link).
+        then(respuesta => respuesta.json()).
+        then( datos => {
+            const datosFormateados =recetas.formatearIngredientes(datos.meals[0]);
+            recetas.guardarFavorito(datosFormateados);
         });
 }
 
-function cargarLocalStorage() {
+function administrarFavoritos(id, existe){
+    if(existe) {
+        recetas.eliminarFavorito(id);
+        ui.cambiarTextoFavoritosBtn(`Guardar favorito`);
+    } else {
+        almacenarLocalStorage(id);
+        ui.cambiarTextoFavoritosBtn(`Eliminar favorito`);
+    }
+}
 
+function cargarLocalStorage() {
+    ui.crearCards(recetas.cargarFavoritos());
 }
