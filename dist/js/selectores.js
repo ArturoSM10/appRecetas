@@ -5,3 +5,5 @@ export const select = document.querySelector(`#categoria`);
 export const cardContainer = document.querySelector(`.card-container`);
 export const body = document.querySelector(`.body`);
 export const modal = document.querySelector(`.modal`);
+export const notificacion = document.querySelector(`.notificacion`);
+export const notificacionTexto = document.querySelector(`.notificacion__contenido`);

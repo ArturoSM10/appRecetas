@@ -17,7 +17,6 @@ body {
         left: auto;
     }
     position: fixed;
-
     z-index: 2;
     .notificacion__header {
         background-color: v.$primario;
@@ -40,6 +39,11 @@ body {
     }
     .notificacion__cerrar {
         font-weight: 300;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin-top: -0.5rem;
+        font-size: 3rem;
         &:hover {
             font-weight: 500;
         }

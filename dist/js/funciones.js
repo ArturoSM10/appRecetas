@@ -1,4 +1,4 @@
-import { barMenu, menuUl, formulario, select, cardContainer, body, modal } from "./selectores.js";
+import { barMenu, menuUl, formulario, select, cardContainer, body, modal, notificacion } from "./selectores.js";
 import { UI } from "./clases/UI.js";
 import { Recetas } from "./clases/Recetas.js";
 
@@ -49,15 +49,19 @@ function manejoDeEventos(e) {
         ui.cerrarModal();
         return;
     }
+
     if(e.target.classList.value ===`modal activo`) {
         const modalCard = document.querySelector(`.modal-card`);
-        console.log(`presionaste fuera`)
         // modal.style.scale = `1.01`;
         modalCard.classList.add(`animacion-modal`);
         setTimeout(() => {
             modalCard.classList.remove(`animacion-modal`);
             //  modal.style.scale = `1`;
         }, 150);
+    }
+
+    if(e.target.classList.value === `notificacion__cerrar`) {
+        ui.cerrarNotificacion();
     }
 }
 
@@ -103,9 +107,11 @@ function administrarFavoritos(id, existe){
     if(existe) {
         recetas.eliminarFavorito(id);
         ui.cambiarTextoFavoritosBtn(`Guardar favorito`);
+        ui.mostrarNotificacion(`Se eliminó de favoritos`);
     } else {
         almacenarLocalStorage(id);
         ui.cambiarTextoFavoritosBtn(`Eliminar favorito`);
+        ui.mostrarNotificacion(`Se agrego a favoritos`);
     }
 }
 
