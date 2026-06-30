@@ -1,4 +1,4 @@
-import { barMenu, menuUl, formulario, select, cardContainer, body, modal, notificacion } from "./selectores.js";
+import { barMenu, menuUl, formulario, select, cardContainer, body, modal, notificacion, resultadosFavoritos } from "./selectores.js";
 import { UI } from "./clases/UI.js";
 import { Recetas } from "./clases/Recetas.js";
 
@@ -116,5 +116,10 @@ function administrarFavoritos(id, existe){
 }
 
 function cargarLocalStorage() {
-    ui.crearCards(recetas.cargarFavoritos());
+    if(recetas.cargarFavoritos().length !== 0) {
+        resultadosFavoritos.textContent = `Resultados`;
+        ui.crearCards(recetas.cargarFavoritos());
+        return;
+    }
+    resultadosFavoritos.textContent = `No hay resultados aún`;
 }

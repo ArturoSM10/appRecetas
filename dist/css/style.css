@@ -738,10 +738,17 @@ body {
 }
 
 .notificacion {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   top: 3rem;
   right: 0;
   width: 80%;
+  position: fixed;
+  z-index: 2;
+}
+.notificacion.mostrar {
+  visibility: visible;
+  opacity: 1;
 }
 @media (min-width: 768px) {
   .notificacion {
@@ -749,10 +756,6 @@ body {
     right: 3rem;
     left: auto;
   }
-}
-.notificacion {
-  position: fixed;
-  z-index: 2;
 }
 .notificacion .notificacion__header {
   background-color: #df4956;

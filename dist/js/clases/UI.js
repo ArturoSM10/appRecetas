@@ -49,14 +49,13 @@ export class UI {
     mostrarModal(objeto, existe) {
         /*
         fatla agregar efectos
-        ver si se puede modificar el menu 
         quitar desplazamiento de barra de scroll
         
-        agregar sin favoritos en pagina favoritos
+        ver si puedo actualizar la lista de favoritos al dar clic en cerrar(opcional)
+        
+        hay un efecto que si esta el mouse ahi dentro no se quita nunca(opcional)
 
-        ver si puedo actualizar la lista de favoritos al dar clic en cerrar
-
-        falta agregar notificacion pero con clases en vez de display
+        ver si se puede modificar el menu (opcional)
         
         */
 
@@ -181,19 +180,18 @@ export class UI {
     mostrarNotificacion(texto){
         clearTimeout(temporizador);
 
-        notificacion.style.display = `block`;
+        notificacion.classList.add(`mostrar`);
         notificacionTexto.textContent = texto;
         temporizador = setTimeout(() => {
             if (notificacion.style.display === `none`) return;
-            notificacion.style.display = `none`;
+            notificacion.classList.remove(`mostrar`);
         }, 5000);
 
     }
 
     cerrarNotificacion () {
-        console.log(clearTimeout(temporizador), temporizador)
         clearTimeout(temporizador);
-        notificacion.style.display = `none`;
+        notificacion.classList.remove(`mostrar`);
         notificacionTexto.textContent = ``;
     }
 }
