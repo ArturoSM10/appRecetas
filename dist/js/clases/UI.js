@@ -1,4 +1,4 @@
-import { select, cardContainer, body, modal, notificacion, notificacionTexto } from "../selectores.js";
+import { select, cardContainer, body, modal, notificacion, notificacionTexto, modalCard } from "../selectores.js";
 let temporizador;
 
 export class UI {
@@ -48,21 +48,25 @@ export class UI {
 
     mostrarModal(objeto, existe) {
         /*
-        fatla agregar efectos
+        fatla agregar efectos (notificacion, menu)
         quitar desplazamiento de barra de scroll
+        hay un efecto que si esta el mouse ahi dentro no se quita nunca(opcional)
         
         ver si puedo actualizar la lista de favoritos al dar clic en cerrar(opcional)
-        
-        hay un efecto que si esta el mouse ahi dentro no se quita nunca(opcional)
-
         ver si se puede modificar el menu (opcional)
         
         */
-
-        
-        this.crearModal(objeto ,existe);
-        body.classList.toggle(`overflow--inactivo`);
-        modal.classList.toggle(`activo`);
+       
+       
+       this.crearModal(objeto ,existe);
+       body.style.paddingRight = `${this.barraMedida()}px`;
+       body.classList.toggle(`overflow--inactivo`);
+       modal.classList.add(`activo`);
+       
+       requestAnimationFrame(()=>{
+            const modalCard = document.querySelector(`.modal-card`);
+            modalCard.classList.toggle(`show`);
+        }); 
     }
 
     crearModal(objeto, existe) {
@@ -160,10 +164,15 @@ export class UI {
     cerrarModal() {
         const modalDiv = document.querySelector(`.modal-card`);
 
-        body.classList.toggle(`overflow--inactivo`);
-        modal.classList.toggle(`activo`);
+        modalDiv.classList.remove(`show`);
         
-        this.limpiarHTML(modal);
+        
+        setTimeout(() => {
+            body.classList.toggle(`overflow--inactivo`);
+            body.style.paddingRight = `0`;
+            modal.classList.remove(`activo`);
+            this.limpiarHTML(modal);
+        }, 300);
     }
 
     limpiarHTML(elemento) {
@@ -184,14 +193,22 @@ export class UI {
         notificacionTexto.textContent = texto;
         temporizador = setTimeout(() => {
             if (notificacion.style.display === `none`) return;
-            notificacion.classList.remove(`mostrar`);
-        }, 5000);
+            setTimeout(() => {
+                notificacion.classList.remove(`mostrar`);
+            }, 1000);
+        }, 15000);
 
     }
 
     cerrarNotificacion () {
         clearTimeout(temporizador);
-        notificacion.classList.remove(`mostrar`);
-        notificacionTexto.textContent = ``;
+        setTimeout(() => {
+            notificacion.classList.remove(`mostrar`);
+            notificacionTexto.textContent = ``;
+        }, 1000);
+    }
+
+    barraMedida() {
+        return (window.innerWidth - document.documentElement.clientWidth);
     }
 }

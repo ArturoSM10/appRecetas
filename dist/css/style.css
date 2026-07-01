@@ -587,11 +587,7 @@ body {
   padding: 3rem 0;
   max-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 1s ease, visible 1s ease;
-}
-.modal.activo {
-  opacity: 1;
-  visibility: visible;
+  transition: opacity 0.3s ease-in-out;
 }
 .modal hr {
   background-color: #d1d2d3;
@@ -608,6 +604,9 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(-4rem);
+  transition: transform 0.3s ease, opacity 0.3s ease-in-out;
 }
 .modal-card__header {
   flex-basis: 10%;
@@ -633,7 +632,7 @@ body {
   transition: font-weight 0.3s;
   border: none;
   background-color: transparent;
-  transition: 0.1s all;
+  transition: color 0.1s ease, font-weight 0.1s ease;
 }
 .modal-card__btn:hover {
   font-weight: 400;
@@ -733,22 +732,35 @@ body {
   background-color: rgb(97.2, 105.3, 112.5);
 }
 
+.modal.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 body {
   position: relative;
 }
 
 .notificacion {
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
   top: 3rem;
   right: 0;
   width: 80%;
   position: fixed;
   z-index: 2;
+  transform: transitionY(0);
+  transition: opacity 1s ease-in-out, transform 1s ease;
 }
 .notificacion.mostrar {
   visibility: visible;
   opacity: 1;
+  transform: translatex(-5rem);
 }
 @media (min-width: 768px) {
   .notificacion {
