@@ -47,12 +47,11 @@ export class UI {
 
     mostrarModal(objeto, existe) {
         /*
-        fatla agregar efectos (notificacion, menu)
-        hay un efecto que si esta el mouse ahi dentro no se quita nunca(opcional)
-        
+        falta agregar efectos (menu)
+
         ver si puedo actualizar la lista de favoritos al dar clic en cerrar(opcional)
-        ver si se puede modificar el menu (opcional)
         
+        ver si se puede modificar el menu (opcional)
         */
        
        
