@@ -1,5 +1,4 @@
 import { select, cardContainer, body, modal, notificacion, notificacionTexto, modalCard } from "../selectores.js";
-let temporizador;
 
 export class UI {
     agregarCategorias(recetas) {
@@ -49,7 +48,6 @@ export class UI {
     mostrarModal(objeto, existe) {
         /*
         fatla agregar efectos (notificacion, menu)
-        quitar desplazamiento de barra de scroll
         hay un efecto que si esta el mouse ahi dentro no se quita nunca(opcional)
         
         ver si puedo actualizar la lista de favoritos al dar clic en cerrar(opcional)
@@ -184,28 +182,6 @@ export class UI {
     cambiarTextoFavoritosBtn(texto) {
         const favorito = document.querySelector('.modal-card__favorito');
         favorito.textContent = texto;
-    }
-
-    mostrarNotificacion(texto){
-        clearTimeout(temporizador);
-
-        notificacion.classList.add(`mostrar`);
-        notificacionTexto.textContent = texto;
-        temporizador = setTimeout(() => {
-            if (notificacion.style.display === `none`) return;
-            setTimeout(() => {
-                notificacion.classList.remove(`mostrar`);
-            }, 1000);
-        }, 15000);
-
-    }
-
-    cerrarNotificacion () {
-        clearTimeout(temporizador);
-        setTimeout(() => {
-            notificacion.classList.remove(`mostrar`);
-            notificacionTexto.textContent = ``;
-        }, 1000);
     }
 
     barraMedida() {

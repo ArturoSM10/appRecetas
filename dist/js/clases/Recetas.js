@@ -1,4 +1,3 @@
-// import { recetasFavoitas } from "../variables.js";
 let recetasFavoritas;
 
 export class Recetas {

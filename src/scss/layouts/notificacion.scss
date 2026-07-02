@@ -7,7 +7,6 @@ body {
 }
 
 .notificacion {
-    opacity: 0;
     visibility: hidden;
     top: 3rem;
     right: 0;
@@ -15,12 +14,17 @@ body {
     position: fixed;
     z-index: 2;
     transform: transitionY(0);
-    transition: opacity 1s ease-in-out, transform 1s ease;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
     &.mostrar {
         visibility: visible;
         opacity: 1;
         transform: translatex(-5rem);
     }
+    &.ocultar {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
     @include m.tablet { 
         width: 40rem;
         right: 3rem;

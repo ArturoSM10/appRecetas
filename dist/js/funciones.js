@@ -1,9 +1,12 @@
-import { barMenu, menuUl, formulario, select, cardContainer, body, modal, notificacion, resultadosFavoritos } from "./selectores.js";
+import { barMenu, menuUl, formulario, select, cardContainer, body, modal, notificacion, resultadosFavoritos, notificacionTexto } from "./selectores.js";
 import { UI } from "./clases/UI.js";
 import { Recetas } from "./clases/Recetas.js";
+// import { temporizador } from "./variables.js";
+import { Notificacion } from "./clases/Notificacion.js";
 
 const ui = new UI();
-const recetas = new Recetas;
+const recetas = new Recetas();
+const toastNotificacion = new Notificacion(notificacion, notificacionTexto);
 
 export function cargarPagina() {
     leerEventos();
@@ -18,7 +21,8 @@ export function cargarFavoritos() {
 function leerEventos() {
     body.addEventListener(`click`, manejoDeEventos);
     select.addEventListener(`input`, cargarRecetasCard);
-
+    notificacion.addEventListener(`mouseover`, notificacionPersistente);
+    notificacion.addEventListener(`mouseleave`, notificacionNormal);
 }
 
 function leerEventosFavoritos() {
@@ -61,7 +65,7 @@ function manejoDeEventos(e) {
     }
 
     if(e.target.classList.value === `notificacion__cerrar`) {
-        ui.cerrarNotificacion();
+        toastNotificacion.cerrarNotificacion();
     }
 }
 
@@ -107,11 +111,11 @@ function administrarFavoritos(id, existe){
     if(existe) {
         recetas.eliminarFavorito(id);
         ui.cambiarTextoFavoritosBtn(`Guardar favorito`);
-        ui.mostrarNotificacion(`Se eliminó de favoritos`);
+        toastNotificacion.mostrarNotificacion(`Se eliminó de favoritos`);
     } else {
         almacenarLocalStorage(id);
         ui.cambiarTextoFavoritosBtn(`Eliminar favorito`);
-        ui.mostrarNotificacion(`Se agrego a favoritos`);
+        toastNotificacion.mostrarNotificacion(`Se agrego a favoritos`);
     }
 }
 
@@ -122,4 +126,12 @@ function cargarLocalStorage() {
         return;
     }
     resultadosFavoritos.textContent = `No hay resultados aún`;
+}
+
+function notificacionPersistente(e) {
+    toastNotificacion.pausarNotificacion();
+}
+
+function notificacionNormal() {
+    toastNotificacion.reanudarNotificacion();
 }
